@@ -1,0 +1,166 @@
+\documentclass[12pt]{article}
+\usepackage[printonlyused,withpage]{acronym} % acronyms
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[page,title,toc]{appendix} % appendix
+\usepackage{array} % tables (?)
+\usepackage{bbold} % \mathbb
+\usepackage[backend=biber, style=apa]{biblatex} % bibliography
+\usepackage{bm} % bold math
+\usepackage{caption} % better captioning and figure numbering (?)
+\usepackage{changepage} % some landscape pages
+\usepackage{csquotes} % \blockquote
+\usepackage{enumitem} % control spacing
+\usepackage{etoolbox} % for a macro (?)
+\usepackage{fancyhdr}				% For fancy header/footer
+\usepackage{float}      % use the [H] option for positioning
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage[hang,flushmargin]{footmisc} % don't indent footnotes
+\usepackage{gensymb} % \degree symbol
+\usepackage{glossaries} % glossary
+\usepackage{graphicx}				% For including figure/image
+\usepackage[margin=1.0in,includehead,includefoot]{geometry}		% For setting margins
+\usepackage{import}    % \incfig
+\usepackage[iso,american]{isodate}
+\usepackage{makecell}  % multi-row table cells
+%\usepackage{mathptmx}  % make math Times New Roman
+%\usepackage{minted}    % code styling
+\usepackage{multicol} % for easy multiple columns
+\usepackage{pdflscape} % make \incfig to landscape
+\usepackage{pdfpages} % \includepdf
+%\usepackage{pgffor} % iterate over the modular files to import their labels
+\usepackage{pgfplots} % bar chart
+\usepackage{ragged2e} % \raggedright
+\usepackage[nodisplayskipstretch]{setspace} % {single,one-half}space \doublespacing, don't change math spacing
+\usepackage{soul} % underline across line breaks
+\usepackage{svg}
+\usepackage{textcomp} % textcomp to get rid of gensymb warnings
+%\usepackage{times} % Times New Roman, only pdflatex
+\usepackage{titlesec} % change *section title spacing
+\usepackage{transparent} % \incfig (breaks pgffor)
+\usepackage[normalem]{ulem} % allow \smash of underlines
+\usepackage{vcell} % vertical writing in table cells (?)
+\usepackage{wrapfig} % \incfig
+\usepackage{xifthen} % \incfig
+\usepackage{xparse} % ?
+\usepackage{xr} % ?
+
+% hYpErReF mUsT cOmE lAsT
+\usepackage[hidelinks]{hyperref} % \href{url}{text}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,filecolor=black,citecolor=black}
+
+% svg and Inkscape's pdf_tex
+\newcommand{\incfig}[2]{
+	\def\svgwidth{#1\columnwidth}
+	\import{./}{#2.pdf_tex}
+}
+
+% Bibliography
+%\addbibresource{}
+
+% Font size reminder
+% \tiny \small \normalsize \large \Large \Huge
+%\setmainfont{Times New Roman}
+\setmonofont{Mononoki Nerd Font Mono}[Scale=MatchLowercase]
+
+%%% Macros
+% Horizontal Spacing
+\newcommand\hs{\hspace{1cm}}
+\newcommand\hhs{\hspace{0.5cm}}
+% Fancy header and footer for homeworks
+\newcommand\hwheadfoot{
+\pagestyle{fancy}
+\fancyhead[LO,L]{Lorenzo Hess}
+\fancyhead[CO,C]{CLASS: Homework NUMBER} % TODO
+\fancyhead[RO,R]{\today} % TODO
+%\fancyfoot[LO,L]{}
+\fancyfoot[CO,C]{\thepage}
+%\fancyfoot[RO,R]{}
+\topmargin=-0.75in
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}}
+
+% Homework problems with arbitrary numbers without worrying about section formatting and counters
+\newcommand{\problemSection}[1]{ % Args = section number
+\noindent\Large\textbf{Section #1}
+}
+\newcommand{\problem}[1]{ % Args = number
+\noindent\large\textbf{Problem #1}
+}
+
+% Volume symbol (heat transfer)
+\newcommand{\volume}{{\ooalign{\hfil$V$\hfil\cr\kern0.08em--\hfil\cr}}}
+
+% Table of Contents tweaks
+% Singlespacing
+\let\oldToC\tableofcontents
+\renewcommand{\tableofcontents}{\begin{singlespace}\oldToC\end{singlespace}}
+% Include subsubsections
+\setcounter{tocdepth}{3}
+
+% Spacing
+\singlespacing
+\setlist{listparindent=\parindent, % indent paragraphs under \item
+  nolistsep} % no spacing between list items
+
+% Smash underlines
+\let\oldunderline\underline
+\renewcommand{\underline}[1]{\oldunderline{\smash{#1}}}
+\setlength\ULdepth{1.5pt}
+
+% Minted code styling
+%\usemintedstyle{friendly}
+%\setminted[matlab]{fontsize=\normalsize, breaklines=true, breakanywhere=true, linenos=true, numbersep=6pt, stripnl=true, baselinestretch=1}
+%\setminted[text]{fontsize=\scriptsize, breaklines=true, breakanywhere=true, linenos=false, numbersep=6pt, stripnl=true, baselinestretch=1}
+
+% Title spacing
+% Usage: \titlespacing{command}{left spacing}{before spacing}{after spacing}[right]
+%\titlespacing\section{0pt}{-10pt}{-10pt}
+%\titlespacing\subsection{0pt}{-10pt}{-10pt}
+%\titlespacing\subsubsection{0pt}{-10pt}{-10pt}
+
+% Set nomenclature spacing
+%\setlength{\nomitemsep}{-5pt}
+
+\author{Lorenzo Hess}
+\date{\today}
+\title{Title}
+
+\begin{document}
+
+\section{Theory}%
+
+Formally, the Pure Pun is a phrase, P(word), containing a Homophone Pair, of Words 1 and 2, with the following characteristics:
+\begin{enumerate}
+  \item P(1) = P(2) in sound (they sound the same when spoken)
+  \item P(1) = P(2) in structure (no words can be added or removed when replacing Word 1 with Word 2)
+  \item P(1) and P(2) are both grammatically correct
+  \item P(1) and P(2) both make sense\\
+\end{enumerate}
+
+\noindent The algorithm is:
+\begin{enumerate}
+  \item Think of a Homophone Pair (e.g. chard and charred) $\to$ preserves Sound Purity
+  \item Determine if the Homophone Pair words can be the same part of speech, or if a certain context can allow that (e.g. ``chard'' and ``charred veggies'' are both nouns) $\to$ preserves Grammatical Purity
+  \item Think of a scenario in which both words in the Pair make sense (e.g. restaurant has ``chard'' and ``charred'' foods)
+  \item Come up with the phrase or sentence which contains the pure pun (e.g. ``vegetable is chard/charred'') (must preserve Structural Purity)
+  \item Add any necessary context (e.g. the vegetable is ``grilled'')
+  \item Make concise
+\end{enumerate}
+
+\section{Examples}%
+
+Homophone Pair Words 1 and 2 are separated by a slash, ``/''.
+
+\begin{enumerate}
+  \item ``My favorite grilled vegetable is chard/charred.'' - LH
+  \item ``A waiter once brought a bread appetizer, even though I'm gluten free. It was a Naan/non- starter.'' - LH
+  \item ``That cornfield was difficult to get through, we got lost in the maize/maze.'' - AB
+\end{enumerate}
+
+\vfill
+Credits: LH, Lorenzo Hess. AB, Arshia Balaji.
+
+\end{document}
